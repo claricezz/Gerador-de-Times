@@ -1,8 +1,25 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+import path from "path";
 
 export default defineConfig({
-    tanstackStart: {
-        server: { entry: "server" },
+    plugins: [
+        TanStackRouterVite(),
+        react(),
+        tsconfigPaths(),
+    ],
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "./src"),
+        },
     },
-    nitro: true,
+    server: {
+        middlewareMode: true,
+    },
+    ssr: {
+        external: ["react", "react-dom"],
+        noExternal: ["@tanstack/react-router", "@tanstack/react-query"],
+    },
 });

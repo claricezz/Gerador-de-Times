@@ -4,21 +4,5 @@
   "installCommand": "npm ci",
   "env": {
     "VERCEL": "true"
-  },
-  "public": "dist/client",
-  "functions": {
-    "api/**": {
-      "runtime": "nodejs20.x"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/assets/(.*)",
-      "destination": "/assets/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/api/index"
-    }
-  ]
+  }
 }
